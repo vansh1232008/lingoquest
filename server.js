@@ -1,13 +1,3 @@
-// LingoQuest: Full-Stack Project with JavaScript (Node.js + React)
-
-// Step 1: Backend Setup (Node.js + Express)
-
-// 1. Initialize the Backend
-// Open a terminal in your project directory and run:
-// npm init -y
-// npm install express mongoose cors body-parser bcrypt jsonwebtoken
-
-// 2. Create the Server
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -103,45 +93,3 @@ app.get('/api/quizzes', async (req, res) => {
 
 // Start Server
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
-
-// Step 2: Frontend Setup (React)
-
-// 1. Initialize React Project
-// In a new terminal, run:
-// npx create-react-app lingoquest_frontend
-// cd lingoquest_frontend
-// npm install axios react-router-dom
-
-// 2. Create Components
-// Register.js
-import React, { useState } from 'react';
-import axios from 'axios';
-
-const Register = () => {
-    const [formData, setFormData] = useState({ username: '', email: '', password: '' });
-
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const res = await axios.post('http://localhost:5000/api/register', formData);
-            alert(res.data.message);
-        } catch (err) {
-            alert('Registration failed');
-        }
-    };
-
-    return (
-        <form onSubmit={handleSubmit}>
-            <input name="username" placeholder="Username" onChange={handleChange} />
-            <input name="email" placeholder="Email" onChange={handleChange} />
-            <input name="password" type="password" placeholder="Password" onChange={handleChange} />
-            <button type="submit">Register</button>
-        </form>
-    );
-};
-
-export default Register;
